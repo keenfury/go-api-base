@@ -17,10 +17,10 @@ var (
 	TCPPort      = getEnvOrDefault("TCP_PORT", "12573")
 	RunTCPPort   = getEnvOrDefault("RUN_TCP_PORT", "false")
 	PidPath      = getEnvOrDefault("PID_PATH", fmt.Sprintf("/tmp/%s.pid", AppName))
-	PostgresUser = getEnvOrDefault("PG_USER", "")
-	PostgresPass = getEnvOrDefault("PG_PASS", "")
-	PostgresDB   = getEnvOrDefault("PG_DB", "")
-	PostgresHost = getEnvOrDefault("PG_HOST", "localhost")
+	PostgresUser = getEnvOrDefault("DB_USER", "")
+	PostgresPass = getEnvOrDefault("DB_PASS", "")
+	PostgresDB   = getEnvOrDefault("DB_DB", "")
+	PostgresHost = getEnvOrDefault("DB_HOST", "localhost")
 	LogPath      = getEnvOrDefault("LOG_PATH", fmt.Sprintf("/tmp/%s.out", AppName))
 	LogOutput    *reopen.FileWriter
 	ExecDir      = ""
