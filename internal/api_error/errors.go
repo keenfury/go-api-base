@@ -120,13 +120,13 @@ func getApiErrorCode() string {
 }
 
 // ***** Error methods *****
-func GeneralError(detail string) ApiError {
+func GeneralError(detail string, err error) ApiError {
 	return NewApiError(
 		http.StatusInternalServerError,
 		"Internal Server Error",
 		detail,
 		false,
-		nil,
+		err,
 	)
 }
 
