@@ -46,6 +46,7 @@ type (
 	}
 )
 
+// error handler
 func ErrorHandler(err error, c echo.Context) {
 	var apiErr ApiError
 	switch err.(type) {
@@ -63,7 +64,7 @@ func ErrorHandler(err error, c echo.Context) {
 			apiErr = NewApiError(httpErr.Code, httpErr.Error(), c.Request().RequestURI, false, err)
 		}
 	default:
-		apiErr = GeneralError("Internal Error")
+		apiErr = GeneralError("Internal Error", nil)
 	}
 	c.JSON(apiErr.StatusCode, apiErr.Error())
 }
