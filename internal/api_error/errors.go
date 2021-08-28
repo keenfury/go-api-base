@@ -46,7 +46,6 @@ type (
 	}
 )
 
-// error handler
 func ErrorHandler(err error, c echo.Context) {
 	var apiErr ApiError
 	switch err.(type) {
