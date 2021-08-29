@@ -69,6 +69,7 @@ func ErrorHandler(err error, c echo.Context) {
 	c.JSON(apiErr.StatusCode, apiErr.Error())
 }
 
+// base function call
 func NewApiError(statusCode int, title string, detail string, severe bool, err error) ApiError {
 	if err == nil {
 		err = errors.New("")
