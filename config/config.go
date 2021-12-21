@@ -11,20 +11,23 @@ import (
 )
 
 var (
-	AppName      = getEnvOrDefault("APP_NAME", "your_app")
-	AppVersion   = getEnvOrDefault("APP_VERSION", "1.0.0")
-	RestPort     = getEnvOrDefault("APP_PORT", "12572")
-	TCPPort      = getEnvOrDefault("TCP_PORT", "12573")
-	RunTCPPort   = getEnvOrDefault("RUN_TCP_PORT", "false")
-	PidPath      = getEnvOrDefault("PID_PATH", fmt.Sprintf("/tmp/%s.pid", AppName))
-	PostgresUser = getEnvOrDefault("DB_USER", "")
-	PostgresPass = getEnvOrDefault("DB_PASS", "")
-	PostgresDB   = getEnvOrDefault("DB_DB", "")
-	PostgresHost = getEnvOrDefault("DB_HOST", "localhost")
-	LogPath      = getEnvOrDefault("LOG_PATH", fmt.Sprintf("/tmp/%s.out", AppName))
-	LogOutput    *reopen.FileWriter
-	ExecDir      = ""
-	Env          = getEnvOrDefault("ENV", "dev")
+	AppName         = getEnvOrDefault("APP_NAME", "your_app")
+	AppVersion      = getEnvOrDefault("APP_VERSION", "1.0.0")
+	RestPort        = getEnvOrDefault("APP_PORT", "12572")
+	TCPPort         = getEnvOrDefault("TCP_PORT", "12573")
+	RunTCPPort      = getEnvOrDefault("RUN_TCP_PORT", "false")
+	PidPath         = getEnvOrDefault("PID_PATH", fmt.Sprintf("/tmp/%s.pid", AppName))
+	PostgresUser    = getEnvOrDefault("DB_USER", "")
+	PostgresPass    = getEnvOrDefault("DB_PASS", "")
+	PostgresDB      = getEnvOrDefault("DB_DB", "")
+	PostgresHost    = getEnvOrDefault("DB_HOST", "localhost")
+	LogPath         = getEnvOrDefault("LOG_PATH", fmt.Sprintf("/tmp/%s.out", AppName))
+	LogOutput       *reopen.FileWriter
+	ExecDir         = ""
+	Env             = getEnvOrDefault("ENV", "dev")
+	StorageSQL      = false
+	StorageFile     = false
+	StorageFilePath = ""
 )
 
 func init() {
