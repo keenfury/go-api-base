@@ -25,11 +25,12 @@ var (
 	LogOutput       *reopen.FileWriter
 	ExecDir         = ""
 	Env             = getEnvOrDefault("ENV", "dev")
-	StorageSQL      = false
-	StoragePsql     = false
+	StorageSQL      = true
+	StoragePsql     = true
 	StorageSqlite   = false
 	SqlitePath      = "/tmp/scaffold_test.db"
 	StorageMysql    = false
+	StorageGorm     = true
 	StorageFile     = false
 	StorageFilePath = "/tmp/"
 	StorageMongo    = true

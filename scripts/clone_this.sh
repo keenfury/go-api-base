@@ -17,12 +17,12 @@ mkdir ../../$1
 cp -r ../* ../../$1
 cp -r ../.vscode ../../$1
 
-# rename cmd/api
-mv ../../$1/cmd/api ../../$1/cmd/$1
-
 encoded=$(echo $path | sed 's;/;\\/;g')
 encoded=$(echo $encoded | sed 's;\.;\\.;g')
 cd ../../$repo_name
+
+# rename proto file
+mv ./pkg/proto/proto.proto ./pkg/proto/$repo_name.proto
 
 # mac
 find . -type f -print0 -exec sed -i '' "s/github\.com\/keenfury\/api/$encoded/g" {} +
