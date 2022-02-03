@@ -1,6 +1,6 @@
 ### Cloning instruction
 
-Within the ```script``` folder, run the shell script clone_this.sh
+Within the ```scripts``` folder, run the shell script clone_this.sh
 
 One arguements is required:
 
