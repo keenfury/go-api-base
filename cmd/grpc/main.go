@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"net"
 
-	log "github.com/Sirupsen/logrus"
-	"github.com/keenfury/api/config"
+	"github.com/keenfury/go-api-base/config"
+	log "github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 	// --- replace grpc import once - do not remove ---
@@ -13,7 +13,7 @@ import (
 )
 
 func main() {
-	tcpListener, err := net.Listen("tcp", ":"+config.TCPPort)
+	tcpListener, err := net.Listen("tcp", ":"+config.GrpcPort)
 	if err != nil {
 		log.Panic("Unable to start GRPC port:", err)
 	}
@@ -23,6 +23,6 @@ func main() {
 	// --- replace grpc text - do not remove ---
 
 	reflection.Register(s)
-	fmt.Printf("Starting GRPC server on port: %s...\n", config.TCPPort)
+	fmt.Printf("Starting GRPC server on port: %s...\n", config.GrpcPort)
 	s.Serve(tcpListener)
 }

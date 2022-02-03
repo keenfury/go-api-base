@@ -1,30 +1,38 @@
 #!/bin/bash
 
-# please run from api/scripts directory
-# arg[1] = project name
-# arg[2] = repo/full_name/projec name
+# please run from project_root/scripts directory
+# arg[1] = repo/full_name/project name
 
-if [ "$#" -ne 2 ]; then
-    echo "Need new repo name and package folder";
+if [ "$#" -ne 1 ]; then
+    echo "Need new package folder structure (i.e: github.com/<name>/<project>";
     exit 1;
 fi
 
-repo_name=$1
-path=$2
+path=$1
+name=$(basename $1)
+uppername=$(echo "$name" | tr '[:lower:]' '[:upper:]')
 
 # copy files
-mkdir ../../$1
-cp -r ../* ../../$1
-cp -r ../.vscode ../../$1
+mkdir ../../$name
+cp -r ../* ../../$name
+cp -r ../.vscode ../../$name
 
 encoded=$(echo $path | sed 's;/;\\/;g')
 encoded=$(echo $encoded | sed 's;\.;\\.;g')
-cd ../../$repo_name
+cd ../../$name
 
 # rename proto file
-mv ./pkg/proto/proto.proto ./pkg/proto/$repo_name.proto
+mv ./pkg/proto/proto.proto ./pkg/proto/$name.proto
+
+# replace config
+sed -i '' "s/go-api-base/$name/g" ./config/config.go
+sed -i '' "s/GO_API_BASE/$uppername/g" ./config/config.go
+
+# replace rest/main.go
+sed -i '' "s/GO_API_BASE/$uppername/g" ./cmd/rest/main.go
 
 # mac
-find . -type f -print0 -exec sed -i '' "s/github\.com\/keenfury\/api/$encoded/g" {} +
+find . -type f -print0 -exec sed -i '' "s/github\.com\/keenfury\/go-api-base/$encoded/g" {} +
 # linux or gnu sed
-# find . -type f -print0 -exec sed -i "s/github\.com\/keenfury\/api/$encoded/g" {} +
+# find . -type f -print0 -exec sed -i "s/github\.com\/keenfury\/go-api-base/$encoded/g" {} +
+echo -e "\nProject '$name' cloned..."

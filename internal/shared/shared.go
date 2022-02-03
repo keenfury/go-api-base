@@ -1,7 +1,7 @@
 package shared
 
 import (
-	"github.com/keenfury/api/internal/util"
+	"github.com/keenfury/go-api-base/internal/util"
 )
 
 type (

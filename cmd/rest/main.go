@@ -7,12 +7,12 @@ import (
 	"os"
 	"strings"
 
-	log "github.com/Sirupsen/logrus"
-	"github.com/keenfury/api/config"
-	ae "github.com/keenfury/api/internal/api_error"
-	m "github.com/keenfury/api/internal/middleware"
+	"github.com/keenfury/go-api-base/config"
+	ae "github.com/keenfury/go-api-base/internal/api_error"
+	m "github.com/keenfury/go-api-base/internal/middleware"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
+	log "github.com/sirupsen/logrus"
 	// --- replace server header text ---
 )
 
@@ -20,14 +20,13 @@ func main() {
 	setPidFile()
 
 	// argument flag
-	var apiPort string
-
-	flag.StringVar(&apiPort, "apiport", "", "the port number used for the API restful listener")
+	var restPort string
+	flag.StringVar(&restPort, "restPort", "", "the port number used for the REST listener")
 
 	flag.Parse()
 
-	if apiPort == "" {
-		apiPort = config.RestPort
+	if restPort == "" {
+		restPort = config.RestPort
 	}
 
 	e := echo.New()
@@ -52,7 +51,7 @@ func main() {
 
 	InitializeRoutes(e)
 
-	e.Start(fmt.Sprintf(":%s", apiPort))
+	e.Start(fmt.Sprintf(":%s", restPort))
 }
 
 func setPidFile() {
@@ -65,18 +64,18 @@ func setPidFile() {
 }
 
 func Index(c echo.Context) error {
-	return c.String(http.StatusOK, "Welcome to the API")
+	return c.String(http.StatusOK, "Welcome to the GO_API_BASE API")
 }
 
 func ServerStatus(c echo.Context) error {
-	c.Response().Header().Add("API_SERVICE", config.AppVersion)
+	c.Response().Header().Add("GO_API_BASE_SERVICE", config.AppVersion)
 	c.Response().WriteHeader(http.StatusOK)
 	return nil
 }
 
 func InitializeRoutes(e *echo.Echo) {
 	// initialize all routes here
-	routeGroup := e.Group("v1") // may want to add "v1" if doing versioning
+	// --- replace server once text - do not remove ---
 	// --- replace server text - do not remove ---
 
 }

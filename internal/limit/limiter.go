@@ -5,7 +5,7 @@ import (
 	tl "github.com/didip/tollbooth/limiter"
 	"github.com/labstack/echo"
 
-	e "github.com/keenfury/api/internal/api_error"
+	e "github.com/keenfury/go-api-base/internal/api_error"
 )
 
 type Limit struct {

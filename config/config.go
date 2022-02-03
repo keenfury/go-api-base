@@ -5,35 +5,26 @@ import (
 	"os"
 	"time"
 
-	log "github.com/Sirupsen/logrus"
 	"github.com/client9/reopen"
 	"github.com/kardianos/osext"
+	log "github.com/sirupsen/logrus"
 )
 
 var (
-	AppName         = getEnvOrDefault("APP_NAME", "your_app")
-	AppVersion      = getEnvOrDefault("APP_VERSION", "1.0.0")
-	RestPort        = getEnvOrDefault("APP_PORT", "12580")
-	TCPPort         = getEnvOrDefault("TCP_PORT", "12573")
-	RunTCPPort      = getEnvOrDefault("RUN_TCP_PORT", "false")
-	PidPath         = getEnvOrDefault("PID_PATH", fmt.Sprintf("/tmp/%s.pid", AppName))
-	DBUser          = getEnvOrDefault("DB_USER", "root")
-	DBPass          = getEnvOrDefault("DB_PASS", "")
-	DBDB            = getEnvOrDefault("DB_DB", "scaffold_test")
-	DBHost          = getEnvOrDefault("DB_HOST", "")
-	LogPath         = getEnvOrDefault("LOG_PATH", fmt.Sprintf("/tmp/%s.out", AppName))
-	LogOutput       *reopen.FileWriter
-	ExecDir         = ""
-	Env             = getEnvOrDefault("ENV", "dev")
-	StorageSQL      = true
-	StoragePsql     = true
-	StorageSqlite   = false
-	SqlitePath      = "/tmp/scaffold_test.db"
-	StorageMysql    = false
-	StorageGorm     = true
-	StorageFile     = false
-	StorageFilePath = "/tmp/"
-	StorageMongo    = true
+	AppName    = "go-api-base"
+	AppVersion = getEnvOrDefault("GO_API_BASE_APP_VERSION", "1.0.0")
+	RestPort   = getEnvOrDefault("GO_API_BASE_REST_PORT", "12580")
+	GrpcPort   = getEnvOrDefault("GO_API_BASE_GRPC_PORT", "12581")
+	PidPath    = getEnvOrDefault("GO_API_BASE_PID_PATH", fmt.Sprintf("/tmp/%s.pid", AppName))
+	DBUser     = getEnvOrDefault("GO_API_BASE_DB_USER", "")
+	DBPass     = getEnvOrDefault("GO_API_BASE_DB_PASS", "")
+	DBDB       = getEnvOrDefault("GO_API_BASE_DB_DB", "")
+	DBHost     = getEnvOrDefault("GO_API_BASE_DB_HOST", "")
+	LogPath    = getEnvOrDefault("GO_API_BASE_LOG_PATH", fmt.Sprintf("/tmp/%s.out", AppName))
+	LogOutput  *reopen.FileWriter
+	ExecDir    = ""
+	Env        = getEnvOrDefault("ENV", "dev")
+	// --- replace config text - do not remove ---
 )
 
 func init() {
