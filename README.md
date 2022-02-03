@@ -1,10 +1,9 @@
 ### Cloning instruction
 
-Run the clone_this.sh script the 'script' folder.
+Within the ```script``` folder, run the shell script clone_this.sh
 
-Two arguements are required:
+One arguements is required:
 
-- repo name e.g. my_repo
 - full path from GOPATH e.g. github.com/{git name}/my_repo
 
-e.g. ./clone_this.sh my_repo github.com/{git name}/my_repo
+e.g. ./clone_this.sh github.com/{git name}/my_repo
