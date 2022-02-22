@@ -9,17 +9,18 @@ if [ "$#" -ne 1 ]; then
 fi
 
 path=$1
+full_path=$GOPATH/src/$1
 name=$(basename $1)
 uppername=$(echo "$name" | tr '[:lower:]' '[:upper:]')
 
 # copy files
-mkdir ../../$name
-cp -r ../* ../../$name
-cp -r ../.vscode ../../$name
+mkdir -p $full_path
+cp -r ../* $full_path
+cp -r ../.vscode $full_path
 
 encoded=$(echo $path | sed 's;/;\\/;g')
 encoded=$(echo $encoded | sed 's;\.;\\.;g')
-cd ../../$name
+cd $full_path
 
 # rename proto file
 mv ./pkg/proto/proto.proto ./pkg/proto/$name.proto
