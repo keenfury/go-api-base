@@ -11,7 +11,8 @@ fi
 path=$1
 full_path=$GOPATH/src/$1
 name=$(basename $1)
-uppername=$(echo "$name" | tr '[:lower:]' '[:upper:]')
+upper_name=$(echo "$name" | tr '[:lower:]' '[:upper:]')
+upper_name_env="${upper_name//-/_}"
 
 # copy files
 mkdir -p $full_path
@@ -27,10 +28,10 @@ mv ./pkg/proto/proto.proto ./pkg/proto/$name.proto
 
 # replace config
 sed -i '' "s/go-api-base/$name/g" ./config/config.go
-sed -i '' "s/GO_API_BASE/$uppername/g" ./config/config.go
+sed -i '' "s/GO_API_BASE/$upper_name_env/g" ./config/config.go
 
 # replace rest/main.go
-sed -i '' "s/GO_API_BASE/$uppername/g" ./cmd/rest/main.go
+sed -i '' "s/GO_API_BASE/$upper_name/g" ./cmd/rest/main.go
 
 # mac
 find . -type f -print0 -exec sed -i '' "s/github\.com\/keenfury\/go-api-base/$encoded/g" {} +
