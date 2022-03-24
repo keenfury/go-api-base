@@ -10,8 +10,8 @@ import (
 	"github.com/keenfury/go-api-base/config"
 	ae "github.com/keenfury/go-api-base/internal/api_error"
 	m "github.com/keenfury/go-api-base/internal/middleware"
-	"github.com/labstack/echo"
-	"github.com/labstack/echo/middleware"
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 	log "github.com/sirupsen/logrus"
 	// --- replace server header text ---
 )
