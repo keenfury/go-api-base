@@ -22,6 +22,7 @@ var (
 	LogOutput     *reopen.FileWriter
 	ExecDir       = ""
 	Env           = getEnvOrDefault("ENV", "dev")
+	// --- replace config text - do not remove ---
 )
 
 func init() {
