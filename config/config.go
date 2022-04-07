@@ -11,20 +11,17 @@ import (
 )
 
 var (
-	AppName    = "go-api-base"
-	AppVersion = getEnvOrDefault("GO_API_BASE_APP_VERSION", "1.0.0")
-	RestPort   = getEnvOrDefault("GO_API_BASE_REST_PORT", "12580")
-	GrpcPort   = getEnvOrDefault("GO_API_BASE_GRPC_PORT", "12581")
-	PidPath    = getEnvOrDefault("GO_API_BASE_PID_PATH", fmt.Sprintf("/tmp/%s.pid", AppName))
-	DBUser     = getEnvOrDefault("GO_API_BASE_DB_USER", "")
-	DBPass     = getEnvOrDefault("GO_API_BASE_DB_PASS", "")
-	DBDB       = getEnvOrDefault("GO_API_BASE_DB_DB", "")
-	DBHost     = getEnvOrDefault("GO_API_BASE_DB_HOST", "")
-	LogPath    = getEnvOrDefault("GO_API_BASE_LOG_PATH", fmt.Sprintf("/tmp/%s.out", AppName))
-	LogOutput  *reopen.FileWriter
-	ExecDir    = ""
-	Env        = getEnvOrDefault("ENV", "dev")
-	StorageSQL = true
+	AppName       = "go-api-base"
+	AppVersion    = getEnvOrDefault("GO_API_BASE_APP_VERSION", "1.0.0")
+	RestPort      = getEnvOrDefault("GO_API_BASE_REST_PORT", "12580")
+	GrpcPort      = getEnvOrDefault("GO_API_BASE_GRPC_PORT", "12581")
+	PidPath       = getEnvOrDefault("GO_API_BASE_PID_PATH", fmt.Sprintf("/tmp/%s.pid", AppName))
+	LogPath       = getEnvOrDefault("GO_API_BASE_LOG_PATH", fmt.Sprintf("/tmp/%s.out", AppName))
+	UseMigration  = true
+	MigrationPath = getEnvOrDefault("GO_API_BASE_MIGRATION_PATH", "")
+	LogOutput     *reopen.FileWriter
+	ExecDir       = ""
+	Env           = getEnvOrDefault("ENV", "dev")
 )
 
 func init() {
