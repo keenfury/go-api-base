@@ -1,35 +1,39 @@
 package shared
 
 import (
-	"github.com/keenfury/go-api-base/internal/util"
+	"strconv"
+
+	ae "github.com/keenfury/go-api-base/internal/api_error"
 )
 
 type (
 	Output struct {
-		Success bool        `json:"success"`
-		Payload interface{} `json:"payload"`
-		Counts  Count       `json:"counts"`
+		JsonApi `json:"jsonapi"`
+		Payload interface{} `json:"data,omitempty"`
+		*Error  `json:"error,omitempty"`
 	}
 
-	Count struct {
-		Count       int `json:"count"`
-		PageSize    int `json:"page_size"`
-		CurrentPage int `json:"current_page"`
-		PageCount   int `json:"pageCount"`
+	JsonApi struct {
+		Version string `json:"version"`
+	}
+
+	Error struct {
+		Id     string `json:"Id,omitempty"`
+		Title  string `json:"Title,omitempty"`
+		Detail string `json:"Detail,omitempty"`
+		Status string `json:"Status,omitempty"`
 	}
 )
 
-func NewOutput(payload interface{}, success bool, pageSize, currentPage, pageCount int) Output {
-	count := util.GetTypeCount(payload)
+func NewOutput(payload interface{}, apiError *ae.ApiError) Output {
+	var err *Error
+	if apiError != nil {
+		err = &Error{Id: apiError.ApiErrorCode, Title: apiError.Title, Detail: apiError.Detail, Status: strconv.Itoa(apiError.StatusCode)}
+	}
 	output := Output{
-		Success: success,
+		JsonApi: JsonApi{Version: "1.0"},
 		Payload: payload,
-		Counts: Count{
-			Count:       count,
-			PageSize:    pageSize,
-			CurrentPage: currentPage,
-			PageCount:   pageCount,
-		},
+		Error:   err,
 	}
 	return output
 }
